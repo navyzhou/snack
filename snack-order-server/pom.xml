@@ -13,6 +13,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<product-common.version>0.0.1-SNAPSHOT</product-common.version>
 	</properties>
 
 	<dependencies>
@@ -21,6 +22,12 @@
 			<artifactId>snack-pom-server</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<type>pom</type>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.yc</groupId>
+			<artifactId>product-common</artifactId>
+			<version>${product-common.version}</version>
 		</dependency>
 	</dependencies>
 
