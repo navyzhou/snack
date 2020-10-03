@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.yc.snack.user.dto.SessionKeysConstant;
+
 @Controller
 @RequestMapping
 public class CreateCodeController{
@@ -28,7 +30,7 @@ public class CreateCodeController{
 		String code = getRandomCode();
 		
 		// 将生成的验证码存到session以便校验
-		request.getSession().setAttribute("vcode", code);
+		request.getSession().setAttribute(SessionKeysConstant.VCODE, code);
 		
 		// 创建验证码图片并返回
 		BufferedImage image = getCodeImage(code, 110, 38);

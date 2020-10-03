@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.snack.user.bean.MemberInfo;
+import com.yc.snack.user.dto.SessionKeysConstant;
 import com.yc.snack.user.enums.ResultEnum;
 import com.yc.snack.user.service.IMemberInfoService;
 import com.yc.snack.user.util.SendMailUtil;
-import com.yc.snack.user.util.SessionConstantKeys;
 import com.yc.snack.user.vo.ResultVO;
 
 @RestController
@@ -40,7 +40,7 @@ public class MemberInfoController {
 			return new ResultVO(ResultEnum.LOGIN_ERROR);
 		}
 		
-		session.setAttribute(SessionConstantKeys.CURRENTMEMBERACCOUNT, memberInfo);
+		session.setAttribute(SessionKeysConstant.CURRENTMEMBERACCOUNT, memberInfo);
 		return new ResultVO(ResultEnum.LOGIN_SUCCESS);
 	}
 	
@@ -64,7 +64,7 @@ public class MemberInfoController {
 	
 	@GetMapping("/check")
 	public ResultVO check(HttpSession session) {
-		Object obj = session.getAttribute(SessionConstantKeys.CURRENTMEMBERACCOUNT);
+		Object obj = session.getAttribute(SessionKeysConstant.CURRENTMEMBERACCOUNT);
 		if (obj == null) {
 			return new ResultVO(ResultEnum.ERROR);
 		}
