@@ -88,6 +88,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 
+		<!-- 提供熔断和降级服务的 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>
+
+		<!-- 仪表盘，监控降级和熔断的 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+		</dependency>
+
 		<!-- spring boot session管理 <dependency> <groupId>org.springframework.session</groupId> 
 			<artifactId>spring-session-data-redis</artifactId> </dependency> -->
 
@@ -101,8 +113,7 @@
 		<!-- 从配置中心读取配置文件的依赖包 <dependency> <groupId>org.springframework.cloud</groupId> 
 			<artifactId>spring-cloud-starter-config</artifactId> </dependency> -->
 
-		<!-- 仪表盘，监控降级和熔断的 <dependency> <groupId>org.springframework.cloud</groupId> 
-			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId> </dependency> -->
+
 
 		<!-- feign，服务之间调用用的 <dependency> <groupId>org.springframework.cloud</groupId> 
 			<artifactId>spring-cloud-starter-openfeign</artifactId> </dependency> -->

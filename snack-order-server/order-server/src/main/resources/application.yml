@@ -44,6 +44,21 @@ mybatis:
    # 需要启动别名的类所在的包
    type-aliases-package: com.yc.snack.order.bean
 
+# hystrix超时配置
+hystrix:
+   command:
+      # 默认超时时间为2秒，不配置的话，默认是1秒
+      default:
+         execution:
+            isolation:
+               thread:
+                  timeoutInMilliseconds: 2000
+      # 指定方法的超时时间，这个值为要指定的降级的这个方法的方法名
+      list:
+         execution:
+            isolation:
+               thread:
+                  timeoutInMilliseconds: 1000
 eureka:
    client:
       service-url:

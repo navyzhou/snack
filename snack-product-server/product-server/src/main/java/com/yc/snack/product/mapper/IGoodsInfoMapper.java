@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.yc.snack.product.bean.GoodsInfo;
+import com.yc.snack.product.dto.ProductInfoDTO;
 
 public interface IGoodsInfoMapper {
 	public int add(GoodsInfo gf);
@@ -24,6 +25,10 @@ public interface IGoodsInfoMapper {
 	public List<GoodsInfo> finds(Map<String, Object> map);
 
 	public int totals(Map<String, Object> map);
+	
+	public List<ProductInfoDTO> listForGno(List<String> gnos);
+	
+	public List<ProductInfoDTO> listForCno(List<String> Cnos);
 }
 
 

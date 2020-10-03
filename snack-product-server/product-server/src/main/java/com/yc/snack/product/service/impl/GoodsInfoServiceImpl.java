@@ -1,5 +1,6 @@
 package com.yc.snack.product.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.snack.product.bean.GoodsInfo;
+import com.yc.snack.product.dto.ProductInfoDTO;
 import com.yc.snack.product.mapper.IGoodsInfoMapper;
 import com.yc.snack.product.service.IGoodsInfoService;
 import com.yc.snack.product.util.RequestParamUtil;
@@ -61,5 +63,21 @@ public class GoodsInfoServiceImpl implements IGoodsInfoService{
 	public List<GoodsInfo> finds(Map<String, Object> map) {
 		map = RequestParamUtil.updateFindByPage(map);
 		return goodsInfoMapper.finds(map);
+	}
+
+	@Override
+	public List<ProductInfoDTO> listForGno(List<String> gnos) {
+		if (gnos == null || gnos.isEmpty()) {
+			return Collections.emptyList();
+		}
+		return goodsInfoMapper.listForGno(gnos);
+	}
+
+	@Override
+	public List<ProductInfoDTO> listForCno(List<String> cnos) {
+		if (cnos == null || cnos.isEmpty()) {
+			return Collections.emptyList();
+		}
+		return goodsInfoMapper.listForCno(cnos);
 	}
 }

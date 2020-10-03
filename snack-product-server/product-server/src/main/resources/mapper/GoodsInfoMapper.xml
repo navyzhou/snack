@@ -108,4 +108,19 @@
 			and price &lt;= #{eprice}
 		</if>
 	</select>
+	
+	<!-- 对外提供服务的 -->
+	<select id="listForGno" resultType="ProductInfoDTO">
+		select gno, gname, tno, price, balance, unit, qperied, weight, status, intro, pics pic from goodsinfo
+		<foreach collection="list" open=" where gno in(" separator="," close=")" item="item">
+			#{item}
+		</foreach>
+	</select>
+	
+	<select id="listForCno" resultType="ProductInfoDTO">
+		select g.gno, gname, tno, price, balance, unit, qperied, weight, status, intro, pics pic, num from goodsinfo g, cartinfo c where g.gno=c.gno
+		<foreach collection="list" open=" and cno in(" separator="," close=")" item="item">
+			#{item}
+		</foreach>
+	</select>
 </mapper>

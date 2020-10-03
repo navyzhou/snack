@@ -1,4 +1,4 @@
-package com.yc.snack.product.controller;
+package com.yc.snack.test.product.controller;
 
 import java.util.List;
 
@@ -19,6 +19,16 @@ public class GoodsInfoForOrderController {
 	
 	@PostMapping("/listForGno")
 	public List<ProductInfoDTO> listForGno(@RequestBody List<String> gnos) {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return goodsInfoService.listForGno(gnos);
+	}
+	
+	@PostMapping("/listForGnos")
+	public List<ProductInfoDTO> listForGnos(@RequestBody List<String> gnos) {
 		return goodsInfoService.listForGno(gnos);
 	}
 	
