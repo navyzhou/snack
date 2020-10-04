@@ -1,4 +1,4 @@
-package com.yc.snack.product.controller;
+package com.yc.snack.order;
 
 import javax.servlet.http.HttpSession;
 
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yc.snack.product.enums.ResultEnum;
-import com.yc.snack.product.vo.ResultVO;
+import com.yc.snack.order.enums.ResultEnum;
+import com.yc.snack.order.vo.ResultVO;
 import com.yc.snack.user.dto.SessionKeysConstant;
 
 @RestController

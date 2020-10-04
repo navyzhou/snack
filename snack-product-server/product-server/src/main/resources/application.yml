@@ -23,6 +23,20 @@ spring:
          force: true
          enabled: true
 
+   session:
+      # 将session信息存到redis中
+      store-type: redis
+  
+   redis:
+      database: 0
+      host: 192.168.99.100
+      prot: 6379
+      password:
+      timeout: 5000
+      jedis:
+         pool:
+            max-active: 8
+ 
 mybatis:
    # mapper映射文件所在的路径
    mapper-locations: mapper/*Mapper.xml

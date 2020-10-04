@@ -134,7 +134,7 @@ let vm = new Vue({
 						// 获取来源的地址，即是从那个页面过来的
 						var temp = document.referrer;
 						if (temp == "" || temp.indexOf("register.html") > 0) { // 如果你是直接进入的登录界面或者是从注册界面过来的
-							location.href="index.html";
+							location.href="/product/index.html";
 						} else {
 							location.href=temp;
 						}

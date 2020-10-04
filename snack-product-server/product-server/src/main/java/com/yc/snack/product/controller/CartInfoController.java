@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yc.snack.product.bean.CartInfo;
 import com.yc.snack.product.enums.ResultEnum;
 import com.yc.snack.product.service.ICartInfoService;
-import com.yc.snack.product.util.SessionConstantKeys;
 import com.yc.snack.product.vo.CartInfoVO;
 import com.yc.snack.product.vo.ResultVO;
-import com.yc.snack.user.dto.MemberLoginInfoDATO;
+import com.yc.snack.user.dto.MemberLoginInfoDTO;
+import com.yc.snack.user.dto.SessionKeysConstant;
 
 @RestController
 @RequestMapping("/cart")
@@ -44,12 +44,12 @@ public class CartInfoController {
 	 */
 	@GetMapping("/finds")
 	public ResultVO finds(HttpSession session) {
-		Object obj = session.getAttribute(SessionConstantKeys.CURRENTMEMBERACCOUNT);
+		Object obj = session.getAttribute(SessionKeysConstant.CURRENTMEMBERACCOUNT);
 		if (obj == null) {
 			return new ResultVO(ResultEnum.LOGIN_ERROR);
 		}
 		
-		MemberLoginInfoDATO member = (MemberLoginInfoDATO) obj;
+		MemberLoginInfoDTO member = (MemberLoginInfoDTO) obj;
 		
 		List<CartInfoVO> list = cartInfoService.findByGno(String.valueOf(member.getMno()));
 		
@@ -62,12 +62,12 @@ public class CartInfoController {
 	@PostMapping("/add")
 	public ResultVO add(CartInfo cf, HttpSession session) {
 		String cno = UUID.randomUUID().toString().replace("-", "");
-		Object obj = session.getAttribute(SessionConstantKeys.CURRENTMEMBERACCOUNT);
+		Object obj = session.getAttribute(SessionKeysConstant.CURRENTMEMBERACCOUNT);
 		if (obj == null) {
 			return new ResultVO(ResultEnum.LOGIN_ERROR);
 		}
 		
-		MemberLoginInfoDATO member = (MemberLoginInfoDATO) obj;
+		MemberLoginInfoDTO member = (MemberLoginInfoDTO) obj;
 		cf.setMno(member.getMno());
 		cf.setCno(cno);
 		
@@ -99,12 +99,12 @@ public class CartInfoController {
 	 */
 	@GetMapping("info")
 	public ResultVO findByMno(HttpSession session) {
-		Object obj = session.getAttribute(SessionConstantKeys.CURRENTMEMBERACCOUNT);
+		Object obj = session.getAttribute(SessionKeysConstant.CURRENTMEMBERACCOUNT);
 		if (obj == null) {
 			return new ResultVO(ResultEnum.LOGIN_ERROR);
 		}
 		
-		MemberLoginInfoDATO member = (MemberLoginInfoDATO) obj;
+		MemberLoginInfoDTO member = (MemberLoginInfoDTO) obj;
 		List<CartInfo> list = cartInfoService.finds(String.valueOf(member.getMno()));
 		if (list == null || list.isEmpty()) {
 			return new ResultVO(ResultEnum.DATA_NULL);

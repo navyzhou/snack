@@ -106,15 +106,30 @@
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
-		<!-- spring boot session管理 <dependency> <groupId>org.springframework.session</groupId> 
-			<artifactId>spring-session-data-redis</artifactId> </dependency> -->
+		<!-- spring boot session管理 -->
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
 
-		<!-- 使用zipkin的时候总是会报错redis连接超时，因为默认带的是lettuce，我们改成jedis访问 <dependency> 
-			<groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-data-redis</artifactId> 
-			<exclusions> <exclusion> <groupId>io.lettuce</groupId> <artifactId>lettuce-core</artifactId> 
-			</exclusion> </exclusions> </dependency> <dependency> <groupId>redis.clients</groupId> 
-			<artifactId>jedis</artifactId> </dependency> <dependency> <groupId>com.fasterxml.jackson.core</groupId> 
-			<artifactId>jackson-databind</artifactId> </dependency> -->
+		<!-- 使用zipkin的时候总是会报错redis连接超时，因为默认带的是lettuce，我们改成jedis访问 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>io.lettuce</groupId>
+					<artifactId>lettuce-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		<!-- <dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-databind</artifactId> 
+			</dependency> -->
 
 		<!-- 从配置中心读取配置文件的依赖包 <dependency> <groupId>org.springframework.cloud</groupId> 
 			<artifactId>spring-cloud-starter-config</artifactId> </dependency> -->

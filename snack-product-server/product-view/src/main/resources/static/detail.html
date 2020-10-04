@@ -48,7 +48,7 @@
     <!-- 顶部搜索区域 -->
     <div class="search">
     	<div class="search_left">
-    		<a href="index.html" title="首页">
+    		<a href="index.html" title="首页" target="_blank">
             	<img src="images/logo.png" width="260px" height="120px"/> 
             </a>
         </div>
@@ -186,7 +186,8 @@ let app = new Vue({
 				this.$nextTick(function(){ // 第一次渲染完成后要执行的代码
 					showPics();
 					$("#goods_descr img").each(function(index, item) {
-						$(this).attr("src", item.src.replace("80", "8080").replace("6644", "8080"));
+						let temp = item.src.split("/");
+						$(this).attr("src", "http://127.0.0.1:8080/" + temp.slice(3).join("/"));
 					})
 				})
 			}

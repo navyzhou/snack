@@ -34,6 +34,11 @@ let login = new Vue({
 				this.carts = result.data.data;
 			}
 		})
+	},
+	methods: {
+		loginout: function() {
+			
+		},
 	}
 })
 

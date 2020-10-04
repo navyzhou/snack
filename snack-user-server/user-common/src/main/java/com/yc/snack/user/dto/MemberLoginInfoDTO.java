@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @date 2020年10月3日
  * Email haijunzhou@hnit.edu.cn
  */
-public class MemberLoginInfoDATO implements Serializable{
+public class MemberLoginInfoDTO implements Serializable{
 	private static final long serialVersionUID = -6469238044637756346L;
 	private Integer mno;
 	private String nickName;
@@ -72,7 +72,7 @@ public class MemberLoginInfoDATO implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MemberLoginInfoDATO other = (MemberLoginInfoDATO) obj;
+		MemberLoginInfoDTO other = (MemberLoginInfoDTO) obj;
 		if (mno == null) {
 			if (other.mno != null)
 				return false;

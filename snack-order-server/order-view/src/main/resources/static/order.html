@@ -20,13 +20,14 @@
         
         <div class="header-info" id="login_info">
             <div class="login-info" v-if="onlogin">
-            	<a href="user.html" title="点击登录" target="_blank">欢迎您：{{nickName}}</a>
-                <a href="register.html" title="点击注册"> 免费注册 </a>
+            	<a href="/user/user.html" title="点击登录" target="_blank">欢迎您：{{nickName}}</a>
+                <a href="javascript:void(0)" title="点击注销" @click="loginout">[注销] </a>
+                <a href="/user/register.html" title="点击注册"> 免费注册 </a>
             </div>
             
             <div class="login-info" v-else>
-            	<a href="login.html" title="点击登录">您好，请登录</a>
-                <a href="register.html" title="点击注册"> 免费注册 </a>
+            	<a href="/user/login.html" title="点击登录">您好，请登录</a>
+                <a href="/user/register.html" title="点击注册"> 免费注册 </a>
             </div>
             
             <div class="person-info">
