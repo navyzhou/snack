@@ -19,4 +19,8 @@
 	<select id="finds" resultType="GoodsType">
 		select tno, tname, status from goodstype where status != 0
 	</select>
+	
+	<select id="findTypes" resultType="ProductTypeInfoDTO">
+		select tno, tname from goodstype where status != 0
+	</select>
 </mapper>

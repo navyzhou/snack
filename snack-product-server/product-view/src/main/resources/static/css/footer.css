@@ -2,12 +2,26 @@
 /* CSS Document */
 
 /*版权所有样式*/
-footer{
-	width: 100%;
-	border-top:2px solid #DDDDDD;
-	text-align:center;
-	margin:20px 0;
-	color: #999999;
+@media(max-width: 800px) {
+	/*底部版权*/
+	footer {
+		float: left;
+		margin-bottom: 60px;
+		width: 100%;
+		border-top:2px solid #DDDDDD;
+		text-align:center;
+		color: #999999;
+	}
+}
+
+@media(min-width: 800px) {
+	footer{
+		width: 100%;
+		border-top:2px solid #DDDDDD;
+		text-align:center;
+		margin:20px 0;
+		color: #999999;
+	}
 }
 
 .foot_link{

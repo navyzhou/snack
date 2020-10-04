@@ -7,7 +7,7 @@ package com.yc.snack.product.dto;
  * @date 2020年10月2日
  * Email haijunzhou@hnit.edu.cn
  */
-public class CrartInfoDTO {
+public class CartInfoDTO {
 	private String gno;
 	private Integer nums;
 	private Double price;
@@ -59,7 +59,7 @@ public class CrartInfoDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CrartInfoDTO other = (CrartInfoDTO) obj;
+		CartInfoDTO other = (CartInfoDTO) obj;
 		if (gno == null) {
 			if (other.gno != null)
 				return false;

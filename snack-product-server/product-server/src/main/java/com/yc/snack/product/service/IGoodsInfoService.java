@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.yc.snack.product.bean.GoodsInfo;
+import com.yc.snack.product.dto.CartInfoDTO;
 import com.yc.snack.product.dto.ProductInfoDTO;
 
 public interface IGoodsInfoService {
@@ -22,4 +23,8 @@ public interface IGoodsInfoService {
 	public List<ProductInfoDTO> listForGno(List<String> gnos);
 
 	public List<ProductInfoDTO> listForCno(List<String> Cnos);
+
+	public int buckleStock(List<CartInfoDTO> list);
+	
+	public List<CartInfoDTO> findByCart(List<String> gnos);
 }

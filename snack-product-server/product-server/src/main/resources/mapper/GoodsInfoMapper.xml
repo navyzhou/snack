@@ -123,4 +123,27 @@
 			#{item}
 		</foreach>
 	</select>
+	
+	<!-- 扣库存的方法 -->
+	<update id="buckleStock">
+		update goodsinfo set
+		<trim prefix="balance = balance - case" suffix="end">
+			<foreach collection="list" item="item">
+				when gno = #{item.gno} then #{item.nums}
+			</foreach>
+		</trim>
+		<where>
+			gno in
+			<foreach collection="list" item="item" open="(" close=")" separator=",">
+				#{item.gno}
+			</foreach>
+		</where>
+	</update>
+	
+	<select id="findByCart" resultType="CartInfoDTO">
+		select gno, price, balance nums from goodsinfo
+		<foreach collection="list" open=" where gno in(" close=")" separator="," item="item">
+			#{item}
+		</foreach>
+	</select>
 </mapper>

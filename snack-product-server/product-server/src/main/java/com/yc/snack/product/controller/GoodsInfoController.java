@@ -119,4 +119,9 @@ public class GoodsInfoController {
 		}
 		return new ResultVO(ResultEnum.ERROR); 
 	}
+	
+	@PostMapping("/findByGno")
+	public GoodsInfo findByGno(String gno) {
+		return goodsInfoService.findByGid(gno);
+	}
 }

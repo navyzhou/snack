@@ -21,18 +21,19 @@
         
         <div class="header-info" id="login_info">
             <div class="login-info" v-if="onlogin">
-            	<a href="user.html" title="点击登录" target="_blank">欢迎您：{{nickName}}</a>
-                <a href="register.html" title="点击注册"> 免费注册 </a>
+            	<a href="/user/user.html" title="点击登录" target="_blank">欢迎您：{{nickName}}</a>
+                <a href="javascript:void(0)" title="点击注销" @click="loginout">[注销] </a>
+                <a href="/user/register.html" title="点击注册"> 免费注册 </a>
             </div>
             
             <div class="login-info" v-else>
-            	<a href="login.html" title="点击登录">您好，请登录</a>
-                <a href="register.html" title="点击注册"> 免费注册 </a>
+            	<a href="/user/login.html" title="点击登录">您好，请登录</a>
+                <a href="/user/register.html" title="点击注册"> 免费注册 </a>
             </div>
             
             <div class="person-info">
             	<span>|</span>
-            	<a href="front/order.html" target="_blank">我的订单</a>
+            	<a href="/order/order.html" target="_blank">我的订单</a>
                 <span>|</span>
                 <a href="#" target="_blank">我的小吃</a>
                 <span>|</span>
@@ -52,7 +53,7 @@
             </a>
         </div>
         
-        <div class="search_right"  id="search_item">
+        <div class="search_right">
         	<div class="search_top">
                 <div class="search_div">
                     <input type="search" class="search-ipt" placeholder="请输入要搜索的内容" />
@@ -60,7 +61,7 @@
                 </div>
                 <div class="buycart">
                 	<i class="iconfont">{{cartCount}}</i>
-                    <a href="front/cart.html" target="_blank">我的购物车</a>
+                    <a href="cart.html" target="_blank">我的购物车</a>
                 </div>
             </div>
             
@@ -84,7 +85,7 @@
 	<!-- 商品展示 -->
 	<div class="goods_details_con clearfix">
 	    <div class="goods_details_pic fl" id="goods_pics">
-	        <img v-for="pic in pics" :src="pic">
+	        <img v-for="pic in pics" :src="'http://127.0.0.1:8080/' + pic">
 	    </div>
 	    <div class="goods_details_list fr">
 	        <h3>{{goods.gname}}</h3>
@@ -140,7 +141,7 @@
 	        <div class="tab_content">
 	            <dl>
 	                <dt>商品详情：</dt>
-	                <dd v-html="goods.descr"></dd>
+	                <dd v-html="goods.descr" id="goods_descr"></dd>
 	            </dl>
 	        </div>
 	
@@ -168,7 +169,6 @@
 <script type="text/javascript" src="js/axios.js"></script>
 <script type="text/javascript" src="js/qs.js"></script>
 <script type="text/javascript" src="js/checklogin.js"></script>
-<script type="text/javascript" src="js/getcartinfo.js"></script>
 <script>
 let app = new Vue({
 	el: "#app",
@@ -185,6 +185,9 @@ let app = new Vue({
 				
 				this.$nextTick(function(){ // 第一次渲染完成后要执行的代码
 					showPics();
+					$("#goods_descr img").each(function(index, item) {
+						$(this).attr("src", item.src.replace("80", "8080").replace("6644", "8080"));
+					})
 				})
 			}
 		}))
@@ -204,16 +207,16 @@ let app = new Vue({
 		addCart: function() {
 			// 先判断用户是否已经登录
 			if (!login.$data.loginId) { // 如果为空，则说明没有登录
-				showMsg("请先登录...", function() {location.href="login.html"});
+				showMsg("请先登录...", "red", function() {location.href="/user/login.html"});
 				return;
 			}
 			
 			// 判断这个商品是否已经在购物车
-			if (types.$data.cartCount > 0) { // 说明当前用户的购物车中有数据
-				let lcarts = types.$data.carts; // 获取当前用户的购物车信息
+			if (login.$data.cartCount > 0) { // 说明当前用户的购物车中有数据
+				let lcarts = login.$data.carts; // 获取当前用户的购物车信息
 				for (let i = 0, len = lcarts.length; i < len; i ++) {
 					if (lcarts[i].gno == this.goods.gno) { // 说明这个商品在购物车里面已经存在
-						axios.post("cart", qs.stringify({op:"update", num:this.nums, cno:lcarts[i].cno})).then(result => {
+						axios.post("cart/update", qs.stringify({num:this.nums, cno:lcarts[i].cno})).then(result => {
 							if (result.data.code == 200) {
 								showMsg("加入购物车成功...", function() {});
 							} else {
@@ -226,13 +229,13 @@ let app = new Vue({
 			}
 			
 			// 要么这个商品没有在购物车里面，要么就是购物车里面还没有东西
-			axios.post("cart", qs.stringify({op:"add", gno:this.goods.gno, num:this.nums, mno:login.$data.loginId})).then(result => {
+			axios.post("cart/add", qs.stringify({gno:this.goods.gno, num:this.nums})).then(result => {
 				if (result.data.code == 200) {
-					types.$data.cartCount = types.$data.cartCount + 1; // 购物车中商品的数量 + 1
+					login.$data.cartCount = login.$data.cartCount + 1; // 购物车中商品的数量 + 1
 					let newObj = {};
 					newObj.cno = result.data.msg;
 					newObj.gno = this.goods.gno;
-					types.$data.carts.push(newObj);
+					login.$data.carts.push(newObj);
 					showMsg("加入购物车成功...", function() {});
 				} else {
 					showMsg("加入购物车失败...", function() {});
@@ -251,7 +254,7 @@ function findGoodsByGno() {
 	}
 	gno = gno.replace("?", "");
 
-	return axios.post("goods", qs.stringify({op:"findByGno", gno:gno}));
+	return axios.post("goods/findByGno", qs.stringify({gno:gno}));
 }
 
 function showPics() {

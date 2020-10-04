@@ -18,7 +18,7 @@
 	<div class="htitle">
     	<a href="#" target="_blank" class="location">衡阳</a>
         
-        <div class="header-info" id="login_info">
+        <div class="header-info">
             <div class="login-info" v-if="onlogin">
             	<a href="user.html" title="点击登录" target="_blank">欢迎您：{{nickName}}</a>
                 <a href="register.html" title="点击注册"> 免费注册 </a>
@@ -50,7 +50,7 @@
             </a>
         </div>
         
-        <div class="search_right"  id="search_item">
+        <div class="search_right" id="search_item">
         	<div class="search_top">
                 <div class="search_div">
                     <input type="search" class="search-ipt" placeholder="请输入要搜索的内容" />
@@ -194,7 +194,6 @@
 <script type="text/javascript" src="js/axios.js"></script>
 <script type="text/javascript" src="js/qs.js"></script>
 <script type="text/javascript" src="js/checklogin.js"></script>
-<script type="text/javascript" src="js/getcartinfo.js"></script>
 <script type="text/javascript" src="js/addr.js"></script>
 
 <script type="text/javascript">
@@ -207,7 +206,7 @@ let app = new Vue({
 		addrs: []
 	},
 	mounted: function() {
-		axios.all([getAddrInfo(), getGoodsInfo()]).then(axios.spread((rt1, rt2) => {
+		/*axios.all([getAddrInfo(), getGoodsInfo()]).then(axios.spread((rt1, rt2) => {
 			// rt1是第一个方法的返回值，rt2是第二个方法的返回值
 			if (rt1.status == 200 && rt1.data.code == 200) {
 				this.addrs = rt1.data.data;
@@ -226,7 +225,7 @@ let app = new Vue({
 			this.$nextTick(function() {
 				bindInfo();
 			})
-		}))
+		}))*/
 	}
 })
 

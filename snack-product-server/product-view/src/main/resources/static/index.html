@@ -3,12 +3,19 @@
 <head>
 <meta charset="utf-8">
 <title>源辰-零食网</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="keywords" content="小吃,美食,零食,源辰" />
 <meta name="description" content="各种小吃美食，应有尽有" />
+<!--[if lt IE 9]>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
 <link href="images/yc.png" rel="shortcut icon" type="image/x-icon" />
-<link href="css/header.css" rel="stylesheet" type="text/css" />
-<link href="css/index.css" rel="stylesheet" type="text/css" />
+<link media="only screen and (min-width: 800px)" href="css/header.css" rel="stylesheet" type="text/css" />
+<link media="only screen and (min-width: 800px)" href="css/index.css" rel="stylesheet" type="text/css" />
 <link href="css/footer.css" rel="stylesheet" type="text/css" />
+<link media="only screen and (max-width: 800px)" href="css/v_index.css" rel="stylesheet" type="text/css" /> 
 <style type="text/css">
 #pagination {
 	margin-top: 20px;
@@ -48,20 +55,21 @@
 	<div class="htitle">
     	<a href="#" target="_blank" class="location">衡阳</a>
         
-        <div class="header-info" id="login_info">
+        <div class="header-info">
             <div class="login-info" v-if="onlogin">
-            	<a href="user.html" title="点击登录" target="_blank">欢迎您：{{nickName}}</a>
-                <a href="register.html" title="点击注册"> 免费注册 </a>
+            	<a href="/user/user.html" title="点击登录" target="_blank">欢迎您：{{nickName}}</a>
+                <a href="javascript:void(0)" title="点击注销" @click="loginout">[注销] </a>
+                <a href="/user/register.html" title="点击注册"> 免费注册 </a>
             </div>
             
             <div class="login-info" v-else>
-            	<a href="login.html" title="点击登录">您好，请登录</a>
-                <a href="register.html" title="点击注册"> 免费注册 </a>
+            	<a href="/user/login.html" title="点击登录">您好，请登录</a>
+                <a href="/user/register.html" title="点击注册"> 免费注册 </a>
             </div>
             
             <div class="person-info">
             	<span>|</span>
-            	<a href="front/order.html" target="_blank">我的订单</a>
+            	<a href="/order/order.html" target="_blank">我的订单</a>
                 <span>|</span>
                 <a href="#" target="_blank">我的小吃</a>
                 <span>|</span>
@@ -69,6 +77,7 @@
                 <span>|</span>
            		<a href="#" target="_blank">个人信息</a>
             </div>
+        
         </div>
     </div>
     
@@ -80,15 +89,15 @@
             </a>
         </div>
         
-        <div class="search_right" id="search_item">
+        <div class="search_right">
         	<div class="search_top">
                 <div class="search_div">
-                    <input type="search" class="search-ipt" id="search_gname" placeholder="请输入要搜索的内容" />
-                    <input type="button" class="search-btn" onclick="search()"/>  
+                    <input type="search" class="search-ipt" placeholder="请输入要搜索的内容" />
+                    <input type="button" class="search-btn" value="搜索" onclick="search()"/>  
                 </div>
                 <div class="buycart">
                 	<i class="iconfont">{{cartCount}}</i>
-                    <a href="front/cart.html" target="_blank">我的购物车</a>
+                    <a href="cart.html" target="_blank">我的购物车</a>
                 </div>
             </div>
             
@@ -104,9 +113,6 @@
 	<ul class="slide_pics">
         <li><a href="" class=""><img src="images/slide01.jpg" alt="幻灯片"></a></li>
         <li><a href="" class=""><img src="images/slide02.jpg" alt="幻灯片"></a></li>
-        <li><a href="" class=""><img src="images/slide03.jpg" alt="幻灯片"></a></li>
-        <li><a href="" class=""><img src="images/slide04.jpg" alt="幻灯片"></a></li>
-        <li><a href="" class=""><img src="images/slide05.jpg" alt="幻灯片"></a></li>
     </ul>
     <div class="prev"></div>
     <div class="next"></div>
@@ -130,12 +136,12 @@
 				<i class="all_i i_b"></i>
 				<i class="all_i i_l"></i>
                 <a :href="'detail.html?' + good.gno" target="_blank" class="hot_warp">
-                	<img :src="'http://127.0.0.1:8080/' + good.pic" :title="good.gname"/>
+                	<img :src="'http://127.0.0.1:8080/snacknet/' + good.pic" :title="good.gname"/>
                     <span>{{good.gname}}</span>
                 </a>
                 <div class="view_info">
                 	<span class="price">{{good.price}}</span>
-                    <span>/ {{good.weight}}</span>
+                    <span>{{good.weight}}/{{good.unit}}</span>
                     <span class="buy" @click="addCart(good.gno)">&nbsp;</span>
                 </div>
             </li>
@@ -161,59 +167,28 @@
     <p>CopyRight &copy; 2019 <a class="copy" href="http://www.hyycinfo.com" target="_blank">衡阳市源辰信息科技有限公司</a> All Rights Reserverd</p>
     <p>电话：0734-8355998 湘ICP备16015987号-1</p>
 </footer>
-<script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
-<script src="js/jquery-ui.min.js" type="text/javascript"></script>
-<script src="js/slide.js" type="text/javascript"></script>
-<script src="js/index.js" type="text/javascript"></script>
+
+<div class="bottom_nav">
+	<a href="javascript:void(0)"><span></span>首页</a>
+    <a href="javascript:void(0)"><span></span>分类</a>
+    <a href="javascript:void(0)"><span></span>发现</a>
+    <a href="javascript:void(0)"><span></span>购物车</a>
+    <a href="javascript:void(0)"><span></span>我的</a>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/slide.js"></script>
 
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/axios.js"></script>
 <script type="text/javascript" src="js/qs.js"></script>
 <script type="text/javascript" src="js/checklogin.js"></script>
 <script type="text/javascript" src="js/showpage.js"></script>
-<script type="text/javascript">
+
+<script>
 var page = 1;
 var rows = 10;
-	
-let types = new Vue({
-	el: "#search_item",
-	data: {
-		types: [],
-		cartCount: 0,
-		carts: []
-	},
-	mounted: function() { // 页面渲染完成后要执行的方法
-		axios.get("types/finds").then(result => { // vue的axios里面默认发送请求时的参数格式为json格式，这样的后后台没法识别，需要通过qs.stringify()方法转成op=finds
-			if (result.status == 200 && result.data.code == 200) { // 说明请求成功
-				this.types  = result.data.data;
-			}
-		}) 
-		
-		axios.post("cart", qs.stringify({op:"info"})).then(result => {
-			if (result.status == 200 && result.data.code == 200) { 
-				this.cartCount = result.data.data.length;
-				this.carts = result.data.data;
-			}
-		})
-	},
-	methods:  {
-		findByTno: function(idx, tno) {
-			if ($("#search_item>a").eq(idx).hasClass("selected")) {
-				return;
-			}
-			$("#search_item>a").removeClass("selected");
-			$("#search_item>a").eq(idx).addClass("selected");
-			page = 1;
-						
-			axios.post("goods/findByFirst", qs.stringify({page:page, rows:rows, tno:tno})).then(result => { // vue的axios里面默认发送请求时的参数格式为json格式，这样的后后台没法识别，需要通过qs.stringify()方法转成op=finds
-				if (result.status == 200 && result.data.code == 200) { // 说明请求成功
-					vm.$data.goods = result.data.data.rows;
-					$("#pagination").showPage( Math.ceil(result.data.data.total / rows) );
-				}
-			}) 
-		}
-	}
-})
 
 let vm = new Vue({
 	el: "#app",
@@ -266,6 +241,7 @@ function findByPage(index, obj) {
 		}
 	})
 }
+
 </script>
 </body>
 </html>

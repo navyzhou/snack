@@ -59,7 +59,17 @@ hystrix:
             isolation:
                thread:
                   timeoutInMilliseconds: 1000
+feign:
+   hystrix:
+      enabled: true
+
 eureka:
    client:
       service-url:
          defaultZone: http://navy:123321@127.0.0.1:6611/eureka
+
+logging:
+   level:
+      # com.yc.snack.order.mapper: debug
+      # root: debug
+      org.springframework.cloud.netflix.feign: debug

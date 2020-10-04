@@ -1,13 +1,15 @@
 let login = new Vue({
-	el: "#login_info",
+	el: "#header",
 	data: {
 		onlogin: false,
 		nickName: "匿名",
 		loginId: "",
-		memberInfo: {}
+		memberInfo: {},
+		cartCount: 0,
+		types: []
 	},
 	mounted: function() {
-		axios.get("member/check").then(rt => {
+		/*axios.get("member/check").then(rt => {
 			if (rt.status == 200) { // 说明请求成功
 				if (rt.data.code == 200) { // 说明登录
 					this.memberInfo = rt.data.data;
@@ -17,6 +19,11 @@ let login = new Vue({
 				}
 			} else {
 				this.onlogin = false;
+			}
+		})*/
+		axios.get("product/types").then(rt => {
+			if (rt.status == 200 && rt.data.code == 200) { // 说明请求成功
+				this.types = rt.data.data;
 			}
 		})
 	}

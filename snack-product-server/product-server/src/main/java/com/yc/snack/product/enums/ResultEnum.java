@@ -10,7 +10,11 @@ package com.yc.snack.product.enums;
 public enum ResultEnum {
 	ERROR(500, "失败"),
 	SUCCESS(200, "成功"),
-	DATA_NULL(501, "数据为空");
+	DATA_NULL(501, "数据为空"),
+	PRODUCT_NOT_EXIST(501, "商品不存在"),
+	PRODUCT_INSUFFICIENT_STOCK(502, "库存不足"),
+	LOGIN_ERROR(500, "未登录"),
+	LOGIN_SUCCESS(200, "已登录");
 	
 	private Integer code;
 	private String msg;

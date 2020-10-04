@@ -100,6 +100,12 @@
 			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
 		</dependency>
 
+		<!-- feign，服务之间调用用的 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
 		<!-- spring boot session管理 <dependency> <groupId>org.springframework.session</groupId> 
 			<artifactId>spring-session-data-redis</artifactId> </dependency> -->
 
@@ -113,10 +119,6 @@
 		<!-- 从配置中心读取配置文件的依赖包 <dependency> <groupId>org.springframework.cloud</groupId> 
 			<artifactId>spring-cloud-starter-config</artifactId> </dependency> -->
 
-
-
-		<!-- feign，服务之间调用用的 <dependency> <groupId>org.springframework.cloud</groupId> 
-			<artifactId>spring-cloud-starter-openfeign</artifactId> </dependency> -->
 
 		<!-- 消息中间件 <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-amqp</artifactId> 
 			</dependency> -->
