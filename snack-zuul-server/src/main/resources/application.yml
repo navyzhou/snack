@@ -4,6 +4,16 @@ server:
 spring:
    application:
       name: zuul-server
+  
+   redis:
+      database: 0
+      host: 192.168.99.100
+      prot: 6379
+      password:
+      timeout: 5000
+      jedis:
+         pool:
+            max-active: 8
 
 zuul:
    # 开始重试机制
@@ -13,6 +23,11 @@ zuul:
    max:
       host:
          connections: 500
+   host:
+      # 最大连接数，默认是200
+      max-total-connections: 200
+      # 每个路由的最大连接数， 默认是20
+      max-per-route-connections: 20
    routes:
       # 写一个标识你服务的名称
       service-rpc-user:

@@ -16,7 +16,8 @@ public enum ResultEnum {
 	LOGIN_ERROR(501, "账号或密码错误"),
 	LOGIN_SUCCESS(200, "登录成功"),
 	REG_ERROR(500, "注册失败"),
-	REG_SUCCESS(200, "注册成功");
+	REG_SUCCESS(200, "注册成功"), 
+	LOGIN_INFO(201, "已经登录");
 	
 	private Integer code;
 	private String msg;
