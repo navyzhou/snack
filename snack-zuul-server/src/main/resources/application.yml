@@ -41,12 +41,25 @@ zuul:
       # 上面的缩写方式就是  服务器名: 拦截路径
       order-server: /order/**
 
+# Zuul中默认就已经集成了Ribbon负载均衡和Hystix熔断机制。但是所有的超时策略都是走的默认值，比如熔断超时时间只有1s，很容易就触发了
+ribbon:
+   # 连接超时时间(ms)
+   ConnectTimeout: 3000
+   # 通信超时时间(ms)
+   ReadTimeout: 5000
+   # 是否对所有操作重试
+   OkToRetryOnAllOperations: true
+   # 同一服务不同实例的重试次数
+   MaxAutoRetriesNextServer: 2
+   # 同一实例的重试次数
+   MaxAutoRetries: 1 
 hystrix:
    command:
       default:
          execution:
             isolation:
                thread:
+                  # 熔断超时时长：6000ms
                   timeoutInMilliseconds: 6000
 
 eureka:

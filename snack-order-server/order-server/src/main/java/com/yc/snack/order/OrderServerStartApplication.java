@@ -12,7 +12,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 //@SpringBootApplication
 //@EnableDiscoveryClient
 //@EnableCircuitBreaker // 开启熔断和降级
-@EnableFeignClients(basePackages = {"com.yc.snack.product.client"})
+@EnableFeignClients(basePackages = {"com.yc.snack.product.client", "com.yc.snack.user.client"})
 @ComponentScan(basePackages = "com.yc.snack")
 @SpringCloudApplication // 它包含以上三个注解
 @EnableHystrixDashboard // 启用仪表盘

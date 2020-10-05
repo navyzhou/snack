@@ -12,6 +12,7 @@
 	<artifactId>product-client</artifactId>
 	<name>product-client</name>
 	<url>http://maven.apache.org</url>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<product-common.version>0.0.1-SNAPSHOT</product-common.version>

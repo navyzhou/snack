@@ -1,4 +1,4 @@
-package com.yc.snack.product.controller;
+package com.yc.snack.order.controller;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yc.snack.product.enums.ResultEnum;
-import com.yc.snack.product.util.CookieUtil;
-import com.yc.snack.product.vo.ResultVO;
+import com.yc.snack.order.enums.ResultEnum;
+import com.yc.snack.order.util.CookieUtil;
+import com.yc.snack.order.vo.ResultVO;
 import com.yc.snack.user.client.UserFeignClient;
 import com.yc.snack.user.dto.CookieConstant;
 import com.yc.snack.user.dto.SessionKeysConstant;

@@ -37,7 +37,22 @@ let login = new Vue({
 	},
 	methods: {
 		loginout: function() {
-			
+			if (confirm("您确定要退出登录吗?")) {
+				axios.post("login/loginout").then( result => {
+					if (result.status == 200 && result.data.code == 200) {
+						this.onlogin = false;
+						this.nickName = "匿名";
+						this.loginId = "";
+						this.memberInfo = {};
+						this.cartCount = 0;
+						this.carts = [];
+					} else {
+						showMsg("噢，注销失败了，我们重新来吧...", "red", function() {
+							//location.href = "/user/login.html";
+						})
+					}
+				})
+			}
 		},
 	}
 })

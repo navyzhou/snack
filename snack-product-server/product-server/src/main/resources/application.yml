@@ -43,6 +43,19 @@ mybatis:
    # 需要启动别名的类所在的包
    type-aliases-package: com.yc.snack.product.bean,com.yc.snack.product.dto,com.yc.snack.product.vo
 
+# hystrix超时配置
+hystrix:
+   command:
+      # 默认超时时间为3秒，不配置的话，默认是1秒
+      default:
+         execution:
+            isolation:
+               thread:
+                  timeoutInMilliseconds: 3000
+feign:
+   hystrix:
+      enabled: true
+      
 eureka:
    client:
       service-url:

@@ -17,6 +17,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.snack.user.bean.MemberInfo;
@@ -126,5 +127,22 @@ public class MemberInfoController {
 			return new ResultVO(ResultEnum.SUCCESS);
 		}
 		return new ResultVO(ResultEnum.ERROR);
+	}
+	
+	/**
+	 * 退出登录的
+	 * @param session
+	 * @param openid
+	 * @return
+	 */
+	@PostMapping("/loginout")
+	public int loginout(HttpSession session, @RequestParam String openid) {
+		try {
+			session.removeAttribute(SessionKeysConstant.CURRENTMEMBERACCOUNT);
+			redisTemplate.delete(openid);
+			return 1;
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 }

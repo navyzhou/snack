@@ -14,6 +14,7 @@
 		<product-common.version>0.0.1-SNAPSHOT</product-common.version>
 		<product-client.version>0.0.1-SNAPSHOT</product-client.version>
 		<user-common.version>0.0.1-SNAPSHOT</user-common.version>
+		<user-client.version>0.0.1-SNAPSHOT</user-client.version>
 		<order-view.version>0.0.1-SNAPSHOT</order-view.version>
 	</properties>
 
@@ -41,6 +42,12 @@
 			<groupId>com.yc</groupId>
 			<artifactId>user-common</artifactId>
 			<version>${user-common.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.yc</groupId>
+			<artifactId>user-client</artifactId>
+			<version>${user-client.version}</version>
 		</dependency>
 
 		<dependency>

@@ -56,7 +56,7 @@ mybatis:
    # mapper映射文件所在的路径
    mapper-locations: mapper/*Mapper.xml
    # 需要启动别名的类所在的包
-   type-aliases-package: com.yc.snack.user.bean
+   type-aliases-package: com.yc.snack.user.bean,com.yc.snack.user.dto
 
 eureka:
    client:
