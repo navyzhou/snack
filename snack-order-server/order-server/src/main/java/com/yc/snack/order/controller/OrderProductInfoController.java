@@ -44,8 +44,6 @@ public class OrderProductInfoController {
 		MemberLoginInfoDTO member = (MemberLoginInfoDTO) obj;
 		List<CartInfoDTO> list = productFeignClient.findCartList(String.valueOf(member.getMno()));
 		
-		list.forEach(System.out::println);
-		
 		if (list == null || list.isEmpty()) {
 			return new ResultVO(ResultEnum.DATA_NULL);
 		}

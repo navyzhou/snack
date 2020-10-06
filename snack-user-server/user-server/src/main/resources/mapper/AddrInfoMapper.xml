@@ -7,4 +7,8 @@
 	<select id="findByMno" parameterType="int" resultType="AddrInfoDTO">
 		select ano, mno, name, tel, province, city, area, addr, flag from addrinfo where mno=#{_parameter}
 	</select>
+	
+	<select id="findByAno" parameterType="string" resultType="AddrInfoDTO">
+		select ano, mno, name, tel, province, city, area, addr, flag from addrinfo where ano=#{_parameter}
+	</select>
 </mapper>

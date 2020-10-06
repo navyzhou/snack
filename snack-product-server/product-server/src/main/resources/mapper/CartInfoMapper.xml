@@ -8,6 +8,10 @@
 		select cno, gno, num from cartinfo where mno=#{_parameter}
 	</select>
 	
+	<select id="find" parameterType="string" resultType="CartInfoDTO">
+		select c.gno, num nums, price from cartinfo c, goodsinfo g where c.gno = g.gno and mno=#{_parameter}
+	</select>
+	
 	<select id="findByGno" parameterType="string" resultType="CartInfoVO">
 		select cno, c.gno, num, price, pics, gname, unit, weight from goodsinfo g, cartinfo c where c.gno=g.gno and mno=#{_parameter}
 	</select>

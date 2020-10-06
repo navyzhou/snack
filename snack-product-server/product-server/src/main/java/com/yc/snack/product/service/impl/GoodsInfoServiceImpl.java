@@ -115,7 +115,7 @@ public class GoodsInfoServiceImpl implements IGoodsInfoService{
 			}
 		}
 		
-		result = goodsInfoMapper.buckleStock(goodsList);
+		result = goodsInfoMapper.buckleStock(list);
 		
 		if (result > 0) { // 说明扣库存成功，这个时候发送一个消息出去，告诉其他服务库存变了
 			// DOTO 发到消息到rabbitmq里面

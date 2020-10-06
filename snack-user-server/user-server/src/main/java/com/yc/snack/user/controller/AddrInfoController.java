@@ -21,4 +21,9 @@ public class AddrInfoController {
 	public List<AddrInfoDTO> list(@RequestParam Integer mno) {
 		return addrInfoService.findByMno(mno);
 	}
+	
+	@PostMapping("findByAno")
+	public AddrInfoDTO findByAno(@RequestParam String ano) {
+		return addrInfoService.findByAno(ano);
+	}
 }

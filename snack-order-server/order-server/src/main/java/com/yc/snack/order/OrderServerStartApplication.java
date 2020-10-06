@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
-@MapperScan("com.yc.snack.orders.mapper") // 指定mapper文件对应的接口包路径
+@MapperScan("com.yc.snack.order.mapper") // 指定mapper文件对应的接口包路径
 //@SpringBootApplication
 //@EnableDiscoveryClient
 //@EnableCircuitBreaker // 开启熔断和降级

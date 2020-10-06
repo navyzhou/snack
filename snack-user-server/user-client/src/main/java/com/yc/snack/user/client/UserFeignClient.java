@@ -18,6 +18,14 @@ public interface UserFeignClient {
 	@PostMapping("/member/loginout")
 	public int loginout(@RequestParam String openid);
 	
+	/**
+	 * 根据地址编号获取收货地址信息
+	 * @param ano
+	 * @return
+	 */
+	@PostMapping("/addr/findByAno")
+	public AddrInfoDTO findByAno(@RequestParam String ano);
+	
 	@Component
 	public static class UserFeignClientFallback implements UserFeignClient {
 
@@ -30,6 +38,10 @@ public interface UserFeignClient {
 		public int loginout(String openid) {
 			return 0;
 		}
-		
+
+		@Override
+		public AddrInfoDTO findByAno(String ano) {
+			return new AddrInfoDTO();
+		}
 	}
 }

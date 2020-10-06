@@ -46,7 +46,7 @@
     <!-- 顶部搜索区域 -->
     <div class="search">
     	<div class="search_left">
-    		<a href="/order/index.html" title="首页" target="_blank">
+    		<a href="/product/index.html" title="首页" target="_blank">
             	<img src="images/logo.png" width="260px" height="120px"/> 
             </a>
         </div>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="buycart">
                 	<i class="iconfont">{{cartCount}}</i>
-                    <a href="front/cart.html" target="_blank">我的购物车</a>
+                    <a href="/product/cart.html" target="_blank">我的购物车</a>
                 </div>
             </div>
             
@@ -264,9 +264,9 @@ function bindInfo() {
 
 // 提交订单
 function payOrder() {
-	let cnos = localStorage.getItem("cnos");
+	let cnos = localStorage.getItem("cnos").split(",");
 	
-	if (!cnos) { // 说明没有勾选商品信息，则调到购物车里面
+	if (!cnos || cnos.length <= 0) { // 说明没有勾选商品信息，则调到购物车里面
 		showMsg("请先选择您要购买的商品...", function() {location.href="front/cart.html";})
 		return;
 	}
@@ -275,12 +275,12 @@ function payOrder() {
 	var totalPrice = $.trim($("#total_pay").text().replace("元","")); // 获取订单总价
 	var ano = $("#addr_list > dd[class='current_location']").data("ano");
 	
-	$.post("order", {op: "add", cnos:cnos, totalPrice:totalPrice, ano:ano}, result => {
+	$.post("order/add", {cnos:cnos, ano:ano}, result => {
 		if (result.code == 200) {
 			localStorage.removeItem("cnos"); // 清除本地缓存中的购物车编号信息
 			// 只是最好是调用支付宝的沙箱模拟支付
 			showMsg("下单成功请支付...", function() {
-				location.href = 'alipay?ono=' + result.msg +"&price=" + totalPrice;
+				location.href = 'order/alipay/pay/' + result.data.orderId +"/" + result.data.totalPrice;
 			})
 		} else {
 			showMsg("下单失败，请稍后重试...", null)

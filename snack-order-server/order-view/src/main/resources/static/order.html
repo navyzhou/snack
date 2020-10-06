@@ -47,7 +47,7 @@
     <!-- 顶部搜索区域 -->
     <div class="search">
     	<div class="search_left">
-    		<a href="index.html" title="首页">
+    		<a href="/product/index.html" title="首页">
             	<img src="images/logo.png" width="260px" height="120px"/> 
             </a>
         </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="buycart">
                 	<i class="iconfont">{{cartCount}}</i>
-                    <a href="front/cart.html" target="_blank">我的购物车</a>
+                    <a href="/product/cart.html" target="_blank">我的购物车</a>
                 </div>
             </div>
             
@@ -92,14 +92,14 @@
 	    	<a href="javascript:void(0)" v-else-if="item.status == 4">去评论</a>
 	    	<a href="javascript:void(0)" style="color:green" v-else>已完成</a>
 	    </div>
-	    <ul class="goods_list_td clearfix" v-for="(itm, index) in item.goods">
+	    <ul class="goods_list_td clearfix" v-for="(itm, index) in item.orderItemList">
 	        <li class="col01">{{index + 1}}</li>			
-	        <li class="col02"><img :src="itm.pics"></li>
+	        <li class="col02"><img :src="'http://127.0.0.1:8080/' + itm.pic"></li>
 	        <li class="col03">{{itm.gname}}</li>
 	        <li class="col04">{{itm.weight}}/{{itm.unit}}</li>
 	        <li class="col04">{{itm.price}}元</li>
-	        <li class="col03">{{itm.nums}}</li>
-	        <li class="col04" v-html="(itm.nums * itm.price).toFixed(2) + '元'"></li>	
+	        <li class="col03">{{itm.num}}</li>
+	        <li class="col04" v-html="(itm.num * itm.price).toFixed(2) + '元'"></li>	
 	    </ul>
     </div>
     
@@ -126,7 +126,6 @@
 <script type="text/javascript" src="js/axios.js"></script>
 <script type="text/javascript" src="js/qs.js"></script>
 <script type="text/javascript" src="js/checklogin.js"></script>
-<script type="text/javascript" src="js/getcartinfo.js"></script>
 
 <script type="text/javascript">
 let app = new Vue({
@@ -135,7 +134,7 @@ let app = new Vue({
 		orders : []
 	},
 	mounted : function() {
-		axios.get("order", {params:{op:"find"}}).then(result => {
+		axios.get("order/finds").then(result => {
 			if (result.status == 200 && result.data.code == 200) {
 				this.orders = result.data.data;
 			}
@@ -143,7 +142,7 @@ let app = new Vue({
 	},
 	methods: {
 		gotoPay: function(ono, price) {
-			location.href = 'alipay?ono=' + ono +"&price=" + price;
+			location.href = 'order/alipay/pay/' + ono +"/" + price;
 		}
 	}
 })

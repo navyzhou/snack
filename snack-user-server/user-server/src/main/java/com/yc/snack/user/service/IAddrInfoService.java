@@ -6,4 +6,6 @@ import com.yc.snack.user.dto.AddrInfoDTO;
 
 public interface IAddrInfoService {
 	public List<AddrInfoDTO> findByMno(Integer mno);
+	
+	public AddrInfoDTO findByAno(String ano);
 }

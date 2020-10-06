@@ -41,6 +41,17 @@ public class CartInfoDTO {
 		this.price = price;
 	}
 
+	public CartInfoDTO(String gno, Integer nums, Double price) {
+		super();
+		this.gno = gno;
+		this.nums = nums;
+		this.price = price;
+	}
+
+	public CartInfoDTO() {
+		super();
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

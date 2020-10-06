@@ -127,7 +127,7 @@
 	<!-- 扣库存的方法 -->
 	<update id="buckleStock">
 		update goodsinfo set
-		<trim prefix="balance = balance - case" suffix="end">
+		<trim prefix="balance = case" suffix="end">
 			<foreach collection="list" item="item">
 				when gno = #{item.gno} then #{item.nums}
 			</foreach>

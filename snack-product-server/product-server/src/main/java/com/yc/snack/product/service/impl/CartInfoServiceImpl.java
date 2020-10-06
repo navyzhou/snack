@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yc.snack.product.bean.CartInfo;
+import com.yc.snack.product.dto.CartInfoDTO;
 import com.yc.snack.product.mapper.ICartInfoMapper;
 import com.yc.snack.product.service.ICartInfoService;
 import com.yc.snack.product.util.StringUtil;
@@ -70,5 +71,10 @@ public class CartInfoServiceImpl implements ICartInfoService{
 			return Collections.emptyList();
 		}
 		return cartInfoMapper.findByGno(mno);
+	}
+
+	@Override
+	public List<CartInfoDTO> find(String mno) {
+		return cartInfoMapper.find(mno);
 	}
 }

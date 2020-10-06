@@ -13,8 +13,8 @@ public class OrderItemInfo implements Serializable{
 	private static final long serialVersionUID = -7492892118200540190L;
 	private Integer ino;
 	private String ono; // 订单编号
-	private Integer gno; // 商品编号
-	private Integer nums; // 购买数量
+	private String gno; // 商品编号
+	private Integer num; // 购买数量
 	private double price; // 购买单价
 	private String gname; // 商品名称
 	private String pic; // 商品图片
@@ -25,7 +25,7 @@ public class OrderItemInfo implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "OrderItemInfo [ino=" + ino + ", ono=" + ono + ", gno=" + gno + ", nums=" + nums + ", price=" + price
+		return "OrderItemInfo [ino=" + ino + ", ono=" + ono + ", gno=" + gno + ", num=" + num + ", price=" + price
 				+ ", gname=" + gname + ", pic=" + pic + ", weight=" + weight + ", unit=" + unit + ", intro=" + intro
 				+ ", status=" + status + "]";
 	}
@@ -46,20 +46,20 @@ public class OrderItemInfo implements Serializable{
 		this.ono = ono;
 	}
 
-	public Integer getGno() {
+	public String getGno() {
 		return gno;
 	}
 
-	public void setGno(Integer gno) {
+	public void setGno(String gno) {
 		this.gno = gno;
 	}
 
-	public Integer getNums() {
-		return nums;
+	public Integer getNum() {
+		return num;
 	}
 
-	public void setNums(Integer nums) {
-		this.nums = nums;
+	public void setNum(Integer nums) {
+		this.num = nums;
 	}
 
 	public double getPrice() {
@@ -126,7 +126,7 @@ public class OrderItemInfo implements Serializable{
 		result = prime * result + ((gno == null) ? 0 : gno.hashCode());
 		result = prime * result + ((ino == null) ? 0 : ino.hashCode());
 		result = prime * result + ((intro == null) ? 0 : intro.hashCode());
-		result = prime * result + ((nums == null) ? 0 : nums.hashCode());
+		result = prime * result + ((num == null) ? 0 : num.hashCode());
 		result = prime * result + ((ono == null) ? 0 : ono.hashCode());
 		result = prime * result + ((pic == null) ? 0 : pic.hashCode());
 		long temp;
@@ -167,10 +167,10 @@ public class OrderItemInfo implements Serializable{
 				return false;
 		} else if (!intro.equals(other.intro))
 			return false;
-		if (nums == null) {
-			if (other.nums != null)
+		if (num == null) {
+			if (other.num != null)
 				return false;
-		} else if (!nums.equals(other.nums))
+		} else if (!num.equals(other.num))
 			return false;
 		if (ono == null) {
 			if (other.ono != null)

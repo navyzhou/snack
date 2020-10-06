@@ -5,7 +5,7 @@
 
 <mapper namespace="com.yc.snack.order.mapper.IOrderInfoMapper">
 	<insert id="add" parameterType="OrderInfo">
-		insert into orderinfo(ono, odate, mno, ano, status, price, invoice) values(#{ono}, now(), #{mno}, #{ano}, 1, #{price}, 0)
+		insert into orderinfo values(#{ono}, now(), #{mno}, #{name}, #{tel}, #{province}, #{city}, #{area}, #{addr}, null, null, 1, #{price}, 0)
 	</insert>
 	
 	<update id="update" parameterType="map">
@@ -13,7 +13,7 @@
 	</update>
 	
 	<select id="listOrder" resultMap="orderDetailInfo" parameterType="int">
-		select o.ono, date_format(odate, '%Y-%m-%d %H:%i:%s') sdate, o.status, o.price totalPrice, i.gno, i.nums, i.price, gname, pic, weight, unit  
+		select o.ono, date_format(odate, '%Y-%m-%d %H:%i:%s') sdate, o.status, o.price totalPrice, i.gno, i.num, i.price, gname, pic, weight, unit  
 		from orderinfo o, orderiteminfo i where o.ono=i.ono and mno=#{_parameter} order by o.ono desc
 	</select>
 	

@@ -16,7 +16,10 @@ public enum ResultEnum {
 	LOGIN_ERROR(501, "账号或密码错误"),
 	LOGIN_SUCCESS(200, "登录成功"),
 	REG_ERROR(500, "注册失败"),
-	REG_SUCCESS(200, "注册成功");
+	REG_SUCCESS(200, "注册成功"),
+	PRODUCT_NOE_EXIST(601, "商品不存在"),
+	PRODUCT_INSUFFICINENT_STOCK(602, "商品库存不足"),
+	ADDR_NOE_EXIST(701, "商品不存在");
 	
 	private Integer code;
 	private String msg;

@@ -19,6 +19,13 @@
 	</properties>
 
 	<dependencies>
+		<!-- 阿里沙箱支付依赖包 -->
+		<dependency>
+			<groupId>com.alipay.sdk</groupId>
+			<artifactId>alipay-sdk-java</artifactId>
+			<version>4.9.124.ALL</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.yc</groupId>
 			<artifactId>snack-pom-server</artifactId>
@@ -31,7 +38,7 @@
 			<artifactId>product-common</artifactId>
 			<version>${product-common.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.yc</groupId>
 			<artifactId>product-client</artifactId>

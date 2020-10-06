@@ -36,7 +36,7 @@ CREATE TABLE `orderiteminfo` (
   `ino` int(11) NOT NULL AUTO_INCREMENT,
   `ono` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '订单编号',
   `gno` int(11) DEFAULT NULL  COMMENT '商品编号',
-  `nums` int(11) DEFAULT NULL  COMMENT '购买数量',
+  `num` int(11) DEFAULT NULL  COMMENT '购买数量',
   `price` decimal(8,2) DEFAULT NULL COMMENT '购买价格',
   `gname` varchar(100) COLLATE utf8_bin DEFAULT NULL COMMENT '商品名称',
   `pic` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '商品图片',

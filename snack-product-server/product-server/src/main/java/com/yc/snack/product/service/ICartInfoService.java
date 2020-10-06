@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.yc.snack.product.bean.CartInfo;
+import com.yc.snack.product.dto.CartInfoDTO;
 import com.yc.snack.product.vo.CartInfoVO;
 
 public interface ICartInfoService {
@@ -13,6 +14,8 @@ public interface ICartInfoService {
 	 * @return
 	 */
 	public List<CartInfo> finds(String mno);
+	
+	public List<CartInfoDTO> find(String mno);
 	
 	/**
 	 * 根据会员编号获取购物车信息
