@@ -96,14 +96,14 @@ public class OrderInfoServiceImpl implements IOrderInfoService{
 		if ( !(orderItemInfoMapper.add(orderItems)> 0)) {
 			throw new RuntimeException();
 		}
-
-		// 扣库存
-		if( !(productFeignClient.buckleStock(cartInfoList) > 0)) {
+		
+		// 删除购物车数据
+		if ( !(productFeignClient.delCart(cnos)> 0)) {
 			throw new RuntimeException();
 		}
 
-		// 删除购物车数据
-		if ( !(productFeignClient.delCart(cnos)> 0)) {
+		// 扣库存
+		if( !(productFeignClient.buckleStock(cartInfoList) > 0)) {
 			throw new RuntimeException();
 		}
 

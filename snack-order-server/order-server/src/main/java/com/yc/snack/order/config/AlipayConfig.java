@@ -3,7 +3,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 
-/* *
+/**
  *类名：AlipayConfig
  *功能：基础配置类
  *详细：设置帐户有关信息及返回路径
@@ -23,10 +23,10 @@ public class AlipayConfig {
 	public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArT2MYozy0UQKB38x/jM6gqU0gdjJsSa2/8PHdVn2YM8yyWpe8UuoNHSyvzwgbEr3Ucj36UKC8aI91m05CdVEYUPnJRuvACCAbNCR/VUfSQNkdUZlYKo1xy0SkJhhpmSJ3iCvFiTLyOWTGbTNNNe92Qwh46K2ZRrjDR75n6B9fu8/TJQeOAEgxLZToZjruCR1APwuwGqfynenIEvay8+Kbs3SDEiNIQQA2jiN/F4KY8M3prsrX61quwup6oHGvhoNlx4S8q52eFipkYLzl1LlUobfCQhM+x7MjHm66Oce8MBJvPE8iGmiASi8VxG2G66aobPFkylRGNKtuuWgvQ1ZAQIDAQAB";
 
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String notify_url = "http://127.0.0.1/order/alipay/notify_url";
+	public static String notify_url = "http://127.0.0.1/order/order/alipay/notify_url";
 
 	// 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String return_url = "http://127.0.0.1/order/alipay/return_url";
+	public static String return_url = "http://127.0.0.1/order/order/alipay/return_url";
 
 	// 签名方式
 	public static String sign_type = "RSA2";

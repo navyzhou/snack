@@ -50,6 +50,22 @@ spring:
                timeout: 2500
                ssl:
                   enable: true
+                  
+   cloud:
+      stream:
+         bindings:
+            # 要进行分组的这个消息队列的名称
+            myMessage:
+               # 分组名，这个我们可以随便自己取
+               group: order
+               # 执行传输对象的格式，不然默认会序列化对象，这样如果出错，导致消息积压，不便于调式
+               content-type: application/json
+                
+   rabbitmq:
+      host: 192.168.99.100
+      port: 5672
+      username: guest
+      password: guest
 
 mybatis:
    # mapper映射文件所在的路径

@@ -36,7 +36,13 @@ spring:
       jedis:
          pool:
             max-active: 8
- 
+            
+   rabbitmq:
+      host: 192.168.99.100
+      port: 5672
+      username: guest
+      password: guest
+      
 mybatis:
    # mapper映射文件所在的路径
    mapper-locations: mapper/*Mapper.xml

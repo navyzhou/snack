@@ -1,13 +1,17 @@
 package com.yc.snack.product.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.yc.snack.product.bean.GoodsInfo;
 import com.yc.snack.product.dto.CartInfoDTO;
 import com.yc.snack.product.dto.ProductInfoDTO;
@@ -22,6 +26,9 @@ import com.yc.snack.product.util.StringUtil;
 public class GoodsInfoServiceImpl implements IGoodsInfoService{
 	@Autowired
 	private IGoodsInfoMapper goodsInfoMapper;
+	
+	@Autowired
+	private AmqpTemplate amqpTemplate;
 
 	@Override
 	public int add(GoodsInfo gf) {
@@ -102,14 +109,20 @@ public class GoodsInfoServiceImpl implements IGoodsInfoService{
 			throw new ProductException(ResultEnum.PRODUCT_NOT_EXIST);
 		}
 		
+		List<Map<String, Object>> newStock = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map = null;
+		
 		for (CartInfoDTO item : list) {
 			for (CartInfoDTO product : goodsList) {
 				if (item.getGno().equals(product.getGno())) {
 					if (item.getNums() > product.getNums()) {
 						throw new ProductException(ResultEnum.PRODUCT_INSUFFICIENT_STOCK);
 					}
-				
+					map = new HashMap<String, Object>();
+					map.put("gno", product.getGno());
 					item.setNums(product.getNums() - item.getNums()); // 最终的仓库量是原有仓库量-你所购买的商品数量
+					map.put("stock", item.getNums());
+					newStock.add(map);
 					continue;
 				}
 			}
@@ -119,7 +132,7 @@ public class GoodsInfoServiceImpl implements IGoodsInfoService{
 		
 		if (result > 0) { // 说明扣库存成功，这个时候发送一个消息出去，告诉其他服务库存变了
 			// DOTO 发到消息到rabbitmq里面
-			
+			amqpTemplate.convertAndSend("productStock", JSONUtils.toJSONString(newStock));
 		}
 		return result;
 	}

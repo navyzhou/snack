@@ -52,7 +52,8 @@ ribbon:
    # 同一服务不同实例的重试次数
    MaxAutoRetriesNextServer: 2
    # 同一实例的重试次数
-   MaxAutoRetries: 1 
+   MaxAutoRetries: 1
+   
 hystrix:
    command:
       default:
