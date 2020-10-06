@@ -1,11 +1,14 @@
 package com.yc.snack.product.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.snack.product.bean.CartInfo;
+import com.yc.snack.product.dto.CartInfoDTO;
 import com.yc.snack.product.enums.ResultEnum;
 import com.yc.snack.product.service.ICartInfoService;
 import com.yc.snack.product.vo.CartInfoVO;
@@ -112,8 +116,39 @@ public class CartInfoController {
 		return new ResultVO(ResultEnum.SUCCESS, list);
 	}
 	
+	
+	@PostMapping("/list")
+	public List<CartInfoDTO> findCartList(@RequestParam String mno) {
+		List<CartInfo> list = cartInfoService.finds(mno);
+		if (list == null || list.isEmpty()) {
+			return Collections.emptyList();
+		}
+		
+		List<CartInfoDTO> resultObject = new ArrayList<CartInfoDTO>();
+		CartInfoDTO cartInfoDTO = null;
+		for (CartInfo cf : list) {
+			cartInfoDTO = new CartInfoDTO();
+			BeanUtils.copyProperties(cf, cartInfoDTO);
+			resultObject.add(cartInfoDTO);
+		}
+		return resultObject;
+	}
+	
+	@PostMapping("/delete")
+	public ResultVO  delete(String cno) {
+		List<String> list = new ArrayList<String>();
+		list.add(cno);
+		if (cartInfoService.delete(list) > 0) {
+			return new ResultVO(ResultEnum.SUCCESS);
+		}
+		return new ResultVO(ResultEnum.ERROR);
+	}
+	
 	@PostMapping("/del")
-	public int  delCart(@RequestParam List<String> cnos) {
-		return cartInfoService.delete(cnos);
+	public ResultVO  delCart(@RequestParam("cnos[]") List<String> cnos) {
+		if (cartInfoService.delete(cnos) > 0) {
+			return new ResultVO(ResultEnum.SUCCESS);
+		}
+		return new ResultVO(ResultEnum.ERROR);
 	}
 }

@@ -10,7 +10,7 @@ let login = new Vue({
 		carts: []
 	},
 	mounted: function() {
-		axios.get("login/check").then(rt => {
+		axios.get("user/check").then(rt => {
 			if (rt.status == 200 && rt.data.code == 200) {
 				this.memberInfo = rt.data.data;
 				this.nickName = rt.data.data.nickName;
@@ -28,7 +28,7 @@ let login = new Vue({
 			}
 		}) 
 		
-		axios.get("cart/info").then(result => {
+		axios.get("product/cart").then(result => {
 			if (result.status == 200 && result.data.code == 200) { 
 				this.cartCount = result.data.data.length;
 				this.carts = result.data.data;
@@ -37,8 +37,23 @@ let login = new Vue({
 	},
 	methods: {
 		loginout: function() {
-			
-		},
+			if (confirm("您确定要退出登录吗?")) {
+				axios.post("user/loginout").then( result => {
+					if (result.status == 200 && result.data.code == 200) {
+						this.onlogin = false;
+						this.nickName = "匿名";
+						this.loginId = "";
+						this.memberInfo = {};
+						this.cartCount = 0;
+						this.carts = [];
+					} else {
+						showMsg("噢，注销失败了，我们重新来吧...", "red", function() {
+							location.href = "/user/login.html";
+						})
+					}
+				})
+			}
+		}
 	}
 })
 

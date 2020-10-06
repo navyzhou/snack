@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yc.snack.order.mapper.IOrderItemInfoMapper">
+	<insert id="add">
+		insert into orderiteminfo values
+		<foreach collection="list" separator="," item="item">
+			(0, #{item.ono}, #{item.gno}, #{item.num}, #{item.price}, #{item.gname}, #{item.pic}, #{item.weight}, #{item.unit}, #{item.intro}, 1)
+		</foreach>
+	</insert>
+</mapper>

@@ -48,7 +48,7 @@ let login = new Vue({
 						this.carts = [];
 					} else {
 						showMsg("噢，注销失败了，我们重新来吧...", "red", function() {
-							//location.href = "/user/login.html";
+							location.href = "/user/login.html";
 						})
 					}
 				})

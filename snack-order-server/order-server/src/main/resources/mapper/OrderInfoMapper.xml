@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yc.snack.order.mapper.IOrderInfoMapper">
+	<insert id="add" parameterType="OrderInfo">
+		insert into orderinfo(ono, odate, mno, ano, status, price, invoice) values(#{ono}, now(), #{mno}, #{ano}, 1, #{price}, 0)
+	</insert>
+	
+	<update id="update" parameterType="map">
+		update orderinfo set status = #{status} where ono=#{ono}
+	</update>
+	
+	<select id="listOrder" resultMap="orderDetailInfo" parameterType="int">
+		select o.ono, date_format(odate, '%Y-%m-%d %H:%i:%s') sdate, o.status, o.price totalPrice, i.gno, i.nums, i.price, gname, pic, weight, unit  
+		from orderinfo o, orderiteminfo i where o.ono=i.ono and mno=#{_parameter} order by o.ono desc
+	</select>
+	
+	<resultMap type="OrderListDTO" id="orderDetailInfo" autoMapping="true">
+		<id property="ono" column="ono"></id>
+		
+		<collection property="orderItemList" ofType="OrderItemInfo" autoMapping="true">
+			<id property="ino" column="ino"/>
+		</collection>
+	</resultMap>
+</mapper>

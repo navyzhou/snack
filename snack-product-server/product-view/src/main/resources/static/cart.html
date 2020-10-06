@@ -189,7 +189,7 @@ let app = new Vue({
 				return;
 			}
 			
-			axios.post("cart", qs.stringify({op:"update", num: -1, cno:cno})).then(result => {
+			axios.post("cart/update", qs.stringify({num: -1, cno:cno})).then(result => {
 				if (result.data.code == 200) {
 					this.$set(this.nums, index, val - 1);
 					this.getTotal();
@@ -200,7 +200,7 @@ let app = new Vue({
 		},
 		add: function(index, cno) {
 			let val = this.nums[index];
-			axios.post("cart", qs.stringify({op:"update", num: 1, cno:cno})).then(result => {
+			axios.post("cart/update", qs.stringify({num: 1, cno:cno})).then(result => {
 				if (result.data.code == 200) {
 					this.$set(this.nums, index, val + 1);
 					this.getTotal();
@@ -230,7 +230,7 @@ let app = new Vue({
 		},
 		delGoods: function(index, cno) {
 			if (confirm("数据一旦删除将不能恢复，您确定要删除吗?")) { // 如果用户选择确认删除
-				axios.post("cart", qs.stringify({op:"delete", cno:cno})).then(result => {
+				axios.post("cart/delete", qs.stringify({cno:cno})).then(result => {
 					if (result.status == 200 && result.data.code == 200) {
 						// 将这条数据从页面中删除
 						$("#l_" + index).remove();

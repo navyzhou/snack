@@ -61,6 +61,13 @@ public interface ProductFeignClient {
 	public int delCart(@RequestParam List<String> cnos);
 	
 	/**
+	 * 获取购物车信息
+	 * @return
+	 */
+	@PostMapping("/cart/list")
+	public List<CartInfoDTO> findCartList(@RequestParam String mno);
+	
+	/**
 	 * 如果产生服务降级，则会自动调用对应的实现方法
 	 * company 源辰信息
 	 * @author navy
@@ -93,6 +100,11 @@ public interface ProductFeignClient {
 		@Override
 		public int delCart(List<String> cnos) {
 			return -1;
+		}
+
+		@Override
+		public List<CartInfoDTO> findCartList(String mno) {
+			return Collections.emptyList();
 		}
 	}
 }

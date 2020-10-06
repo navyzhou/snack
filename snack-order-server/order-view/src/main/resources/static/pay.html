@@ -117,7 +117,7 @@
 	    </ul>
 	    <ul class="goods_list_td clearfix" v-for="(item, index) in orders">
 	        <li class="col01">{{index + 1}}</li>			
-	        <li class="col02"><img :src="item.pics"></li>
+	        <li class="col02"><img :src="'http://127.0.0.1:8080/' + item.pic"></li>
 	        <li class="col03">{{item.gname}}</li>
 	        <li class="col04">{{item.weight}} / {{item.unit}}</li>
 	        <li class="col05">{{item.price}}元</li>
@@ -207,14 +207,14 @@ let app = new Vue({
 		addrs: []
 	},
 	mounted: function() {
-		/*axios.all([getAddrInfo(), getGoodsInfo()]).then(axios.spread((rt1, rt2) => {
+		axios.all([getAddrInfo(), getGoodsInfo()]).then(axios.spread((rt1, rt2) => {
 			// rt1是第一个方法的返回值，rt2是第二个方法的返回值
 			if (rt1.status == 200 && rt1.data.code == 200) {
 				this.addrs = rt1.data.data;
 			}
 			
-			if (rt2.status == 200) {
-				this.orders = rt2.data;
+			if (rt2.status == 200 && rt2.data.code == 200) {
+				this.orders = rt2.data.data;
 				
 				this.orders.forEach( (item, index) => {
 					this.totalCount += item.num;
@@ -226,13 +226,13 @@ let app = new Vue({
 			this.$nextTick(function() {
 				bindInfo();
 			})
-		}))*/
+		}))
 	}
 })
 
 // 获取收货地址信息
 function getAddrInfo() {
-	return axios.get("addr", {params:{op:"findByMno"}});
+	return axios.get("user/addr");
 }
 
 // 根据用户选中的购物车编号，查询要下单购买的商品信息
@@ -241,10 +241,10 @@ function getGoodsInfo() {
 	let cnos = localStorage.getItem("cnos");
 	
 	if (!cnos) { // 说明没有勾选商品信息，则调到购物车里面
-		showMsg("请先选择您要购买的商品...", function() {location.href="front/cart.html";})
+		showMsg("请先选择您要购买的商品...", function() {location.href="/product/cart.html";})
 		return;
 	}
-	return axios.post("cart", qs.stringify({op:"findByCnos", cnos:cnos}));
+	return axios.post("product/findByCnos", qs.stringify({cnos:cnos}));
 }
 
 function showAddrDiv() {

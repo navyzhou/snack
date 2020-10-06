@@ -105,6 +105,10 @@ public class ProductInfoDTO {
 	}
 
 	public void setPic(String pic) {
+		if (pic != null && !"".equals(pic) && pic.contains(",")) {
+			this.pic = pic.split(",")[0];
+			return;
+		}
 		this.pic = pic;
 	}
 
