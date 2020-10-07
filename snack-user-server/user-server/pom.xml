@@ -10,7 +10,6 @@
 	<artifactId>user-server</artifactId>
 	
 	<properties>
-		<java.version>1.8</java.version>
 		<spring.build.sourceEncoding>UTF-8</spring.build.sourceEncoding>
 		<user-common.version>0.0.1-SNAPSHOT</user-common.version>
 		<user-view.version>0.0.1-SNAPSHOT</user-view.version>

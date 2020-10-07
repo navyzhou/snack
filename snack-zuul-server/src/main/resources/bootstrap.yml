@@ -1,0 +1,15 @@
+server:
+   port: 80
+
+spring:
+   application:
+      name: zuul-server
+
+eureka:
+   client:
+      service-url:
+         defaultZone: http://navy:123321@127.0.0.1:6611/eureka
+
+#logging:
+#   level:
+#      root: debug

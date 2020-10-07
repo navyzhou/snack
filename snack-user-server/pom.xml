@@ -12,12 +12,10 @@
 	<name>snack-user-server</name>
 	<url>http://maven.apache.org</url>
 
-	<modules>
-		<module>user-server</module>
-		<module>user-common</module>
-		<module>user-client</module>
-		<module>user-view</module>
-	</modules>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+	</properties>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -27,17 +25,19 @@
 		<relativePath></relativePath>
 	</parent>
 
-	<properties>
-		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 	</dependencies>
+
+	<modules>
+		<module>user-server</module>
+		<module>user-common</module>
+		<module>user-client</module>
+		<module>user-view</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>

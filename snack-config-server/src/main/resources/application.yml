@@ -1,0 +1,33 @@
+spring:
+   profiles:
+      active: dev-6622
+
+---
+server:
+   port: 6622
+
+spring:
+   profiles: dev-6622
+   application:
+      name: config-server
+   cloud:
+      config:
+         server:
+            git:
+               uri: https://gitee.com/navy-zhou/snack-config
+               username: haijunzhou@hnit.edu.cn
+               password: navy123321,.
+               # 默认读取的分支，默认就是master
+               default-label: master
+               # 配置文件自动下载后的保存路径
+               basedir: D:\\workspaces\\basedir
+               # 启动的时候从git获取配置文件到本地
+               clone-on-start: true
+               force-pull: true
+               
+eureka:
+   client:
+      service-url:
+         defaultZone: http://navy:123321@127.0.0.1:6611/eureka
+               
+               

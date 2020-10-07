@@ -1,0 +1,29 @@
+spring:
+   profiles:
+      active: dev-6633
+
+---
+server:
+   port: 6633
+
+spring:
+   profiles: dev-6633
+   application:
+      name: user-server
+   cloud:
+      config:
+         label: master
+         # 文件的前缀
+         name: user
+         # {name}-{profile}.yml  user-dev.yml
+         profile: dev
+         discovery:
+            # 开启配置发现
+            enabled: true
+            # 配置中心服务器名
+            service-id: config-server
+            
+eureka:
+   client:
+      service-url:
+         defaultZone: http://navy:123321@127.0.0.1:6611/eureka

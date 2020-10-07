@@ -11,13 +11,6 @@
 	<name>snack-order-server</name>
 	<url>http://maven.apache.org</url>
 
-	<modules>
-		<module>order-server</module>
-		<module>order-common</module>
-		<module>order-view</module>
-		<module>order-client</module>
-	</modules>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
@@ -37,6 +30,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 	</dependencies>
+
+	<modules>
+		<module>order-server</module>
+		<module>order-common</module>
+		<module>order-view</module>
+		<module>order-client</module>
+	</modules>
 
 
 	<dependencyManagement>

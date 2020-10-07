@@ -1,0 +1,36 @@
+spring:
+   profiles:
+      active: dev-6655
+
+---
+server:
+   port: 6655
+
+spring:
+   profiles: dev-6655
+   application:
+      name: order-server
+   cloud:
+      config:
+         label: master
+         # 文件的前缀
+         name: order
+         # {name}-{profile}.yml  user-dev.yml
+         profile: dev
+         discovery:
+            # 开启配置发现
+            enabled: true
+            # 配置中心服务器名
+            service-id: config-server
+
+
+eureka:
+   client:
+      service-url:
+         defaultZone: http://navy:123321@127.0.0.1:6611/eureka
+
+#logging:
+#   level:
+      # com.yc.snack.order.mapper: debug
+      # root: debug
+      # org.springframework.cloud.netflix.feign: debug
