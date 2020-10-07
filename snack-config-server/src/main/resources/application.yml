@@ -24,7 +24,24 @@ spring:
                # 启动的时候从git获取配置文件到本地
                clone-on-start: true
                force-pull: true
-               
+      bus:
+         enabled: true
+         trace:
+           enabled: true
+           
+   rabbitmq:
+      host: 192.168.99.100
+      port: 5672
+      username: guest
+      passwor: guest
+      
+management:
+   endpoints:
+      web:
+         exposure:
+            # 需要开启对外的请求地址
+            include: bus-refresh  
+                         
 eureka:
    client:
       service-url:
