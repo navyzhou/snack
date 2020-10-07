@@ -4,7 +4,18 @@ server:
 spring:
    application:
       name: zuul-server
-
+   cloud:
+      config:
+         label: master
+         # 文件的前缀
+         name: zuul
+         # {name}-{profile}.yml  user-dev.yml
+         profile: dev
+         discovery:
+            # 开启配置发现
+            enabled: true
+            # 配置中心服务器名
+            service-id: config-server
 eureka:
    client:
       service-url:
