@@ -7,6 +7,8 @@ import com.yc.snack.zuul.exception.RateLimiterExcepiton;
 
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.*;
 
+import org.springframework.stereotype.Component;
+
 /**
  * 限流过滤器
  * 时机：是在请求被转发之前调用，所以他应该放在前置过滤器最靠前的地方
@@ -15,6 +17,7 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
  * @date 2020年10月6日
  * Email haijunzhou@hnit.edu.cn
  */
+@Component
 public class RateLimitFilter extends ZuulFilter{
 	// 令牌桶算法现在有开源的实现，我们就用这个开源的
 	private static final RateLimiter RATE_LIMITER = RateLimiter.create(100); // 这里是每1秒中往令牌桶中放多少令牌
@@ -26,7 +29,7 @@ public class RateLimitFilter extends ZuulFilter{
 	
 	@Override
 	public int filterOrder() {
-		return SERVLET_DETECTION_FILTER_ORDER - 1; // 我们比最小值还小
+		return SERVLET_DETECTION_FILTER_ORDER - 10; // 我们比最小值还小
 	}
 	
 	@Override
