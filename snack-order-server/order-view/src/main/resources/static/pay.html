@@ -17,7 +17,6 @@
 	<!-- 顶部标题区域 -->
 	<div class="htitle">
     	<a href="#" target="_blank" class="location">衡阳</a>
-        
         <div class="header-info">
              <div class="login-info" v-if="onlogin">
             	<a href="/user/user.html" title="点击登录" target="_blank">欢迎您：{{nickName}}</a>
@@ -198,6 +197,7 @@
 <script type="text/javascript" src="js/addr.js"></script>
 
 <script type="text/javascript">
+var reg = /<[^><]*script[^><]*>/img;
 let app = new Vue({
 	el:"#app",
 	data: {
@@ -241,7 +241,7 @@ function getGoodsInfo() {
 	let cnos = localStorage.getItem("cnos");
 	
 	if (!cnos) { // 说明没有勾选商品信息，则调到购物车里面
-		showMsg("请先选择您要购买的商品...", function() {location.href="/product/cart.html";})
+		showMsg("请先选择您要购买的商品...", "red", function() {location.href="/product/cart.html";})
 		return;
 	}
 	return axios.post("product/findByCnos", qs.stringify({cnos:cnos}));
@@ -256,6 +256,7 @@ function hiddenDiv() {
 }
 
 function bindInfo() {
+	$("#addr_list > dd").unbind("click");
 	$("#addr_list > dd").click(function() {
 		$("#addr_list > dd").removeClass("current_location");
 		$(this).addClass("current_location");
@@ -267,7 +268,7 @@ function payOrder() {
 	let cnos = localStorage.getItem("cnos").split(",");
 	
 	if (!cnos || cnos.length <= 0) { // 说明没有勾选商品信息，则调到购物车里面
-		showMsg("请先选择您要购买的商品...", function() {location.href="front/cart.html";})
+		showMsg("请先选择您要购买的商品...", "red", function() {location.href="front/cart.html";})
 		return;
 	}
 	
@@ -279,11 +280,46 @@ function payOrder() {
 		if (result.code == 200) {
 			localStorage.removeItem("cnos"); // 清除本地缓存中的购物车编号信息
 			// 只是最好是调用支付宝的沙箱模拟支付
-			showMsg("下单成功请支付...", function() {
+			showMsg("下单成功请支付...", "green", function() {
 				location.href = 'order/alipay/pay/' + result.data.orderId +"/" + result.data.totalPrice;
 			})
 		} else {
-			showMsg("下单失败，请稍后重试...", null)
+			showMsg("下单失败，请稍后重试...", "red")
+		}
+	}, "json");
+}
+
+function addAddr() {
+	var name = $.trim($("#addr_name").val());
+	var tel =  $.trim($("#addr_tel").val());
+	var province =  $.trim($("#province").val());
+	var city =  $.trim($("#city").val());
+	var area =  $.trim($("#area").val());
+	var addr =  $.trim($("#addr_addr").val());
+	
+
+	if (reg.test(name) || reg.test(tel) || reg.test(addr)) {
+		showMsg("您输入的信息不安全...", "red");
+		return;
+	}
+	
+	if (name == "" ||  tel == "" || addr == "" || province == '--请选择省份--' || city == '--请选择城市--' || area == '--请选择地区--') {
+		return;
+	}
+	
+	var obj = {name:name, tel:tel, province:province, city:city, area:area, addr:addr, mno:login.$data.loginId, status:1, flag:0}
+	$.post("user/addAddr", obj, function(data){
+		if (data.code == 200) {
+			obj.ano = data.data;
+			app.$data.addrs.push(obj);
+			$("#addr_div").css("display", "none");
+			$("#myform")[0].reset(); 
+			app.$nextTick(function() {
+				bindInfo();
+			})
+			showMsg("收货地址添加成功...", "green");
+		} else {
+			showMsg("收货地址添加失败，请稍后重试", "red");
 		}
 	}, "json");
 }

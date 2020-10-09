@@ -149,7 +149,7 @@ let app = new Vue({
 		axios.get("cart/finds").then(result => {
 			if (result.status == 200) {
 				if (result.data.code == 400) {
-					showMsg("购物车空空如也，立即去购买吧...", function() {
+					showMsg("购物车空空如也，立即去购买吧...", "orange", function() {
 						location.href="index.html";
 					});
 					return;
@@ -237,12 +237,11 @@ let app = new Vue({
 						
 						// 重新计算总价，将已删除的这一行的对应的状态改成false
 						this.$set(this.status, index, false);
-						
 						this.getTotal();
 						
-						showMsg("购物车删除成功...", null);
+						showMsg("购物车删除成功...", "green");
 					} else {
-						showMsg("购物车删除失败，请稍后重试...", null);
+						showMsg("购物车删除失败，请稍后重试...", "red");
 					}
 				})
 			}
@@ -288,7 +287,7 @@ function gotoPay() {
 	})
 	
 	if (cnos.length <= 0) { // 说明没有勾选任何商品
-		showMsg("请选择您要结算的商品...", null);
+		showMsg("请选择您要结算的商品...", "yellow");
 		return;
 	}
 	

@@ -30,4 +30,9 @@ public class AddrInfoServiceImpl implements IAddrInfoService{
 		return addrInfoMapper.findByAno(ano);
 	}
 
+	@Override
+	public int add(AddrInfoDTO addrInfo) {
+		return addrInfoMapper.add(addrInfo);
+	}
+
 }

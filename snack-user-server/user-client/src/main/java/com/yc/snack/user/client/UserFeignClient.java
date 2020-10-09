@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yc.snack.user.dto.AddrInfoDTO;
@@ -26,6 +27,9 @@ public interface UserFeignClient {
 	@PostMapping("/addr/findByAno")
 	public AddrInfoDTO findByAno(@RequestParam String ano);
 	
+	@PostMapping("/addr/add")
+	public int add(@RequestBody AddrInfoDTO addrInfo);
+	
 	@Component
 	public static class UserFeignClientFallback implements UserFeignClient {
 
@@ -42,6 +46,11 @@ public interface UserFeignClient {
 		@Override
 		public AddrInfoDTO findByAno(String ano) {
 			return new AddrInfoDTO();
+		}
+
+		@Override
+		public int add(AddrInfoDTO addrInfo) {
+			return 0;
 		}
 	}
 }

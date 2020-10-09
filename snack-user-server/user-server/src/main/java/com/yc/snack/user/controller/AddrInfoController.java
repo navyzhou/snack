@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,5 +26,10 @@ public class AddrInfoController {
 	@PostMapping("findByAno")
 	public AddrInfoDTO findByAno(@RequestParam String ano) {
 		return addrInfoService.findByAno(ano);
+	}
+	
+	@PostMapping("/add")
+	public int add(@RequestBody AddrInfoDTO addrInfo) {
+		return addrInfoService.add(addrInfo);
 	}
 }

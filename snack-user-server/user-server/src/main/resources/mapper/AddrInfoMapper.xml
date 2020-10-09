@@ -11,4 +11,8 @@
 	<select id="findByAno" parameterType="string" resultType="AddrInfoDTO">
 		select ano, mno, name, tel, province, city, area, addr, flag from addrinfo where ano=#{_parameter}
 	</select>
+	
+	<insert id="add" parameterType="AddrInfoDTO">
+		insert into addrinfo values(#{ano}, #{mno}, #{name}, #{tel}, #{province}, #{city}, #{area}, #{addr}, 0, 1)
+	</insert>
 </mapper>

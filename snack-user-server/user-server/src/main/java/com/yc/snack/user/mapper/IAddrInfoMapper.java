@@ -8,4 +8,6 @@ public interface IAddrInfoMapper {
 	public List<AddrInfoDTO> findByMno(Integer mno);
 	
 	public AddrInfoDTO findByAno(String ano);
+	
+	public int add(AddrInfoDTO addrInfo);
 }

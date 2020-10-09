@@ -1,5 +1,6 @@
 package com.yc.snack.order.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -66,5 +67,15 @@ public class OrderUserInfoController {
 			return new ResultVO(ResultEnum.DATA_NULL);
 		}
 		return new ResultVO(ResultEnum.SUCCESS, list);
+	}
+	
+	@PostMapping("/addAddr")
+	public ResultVO addAddr(AddrInfoDTO addrInfo) {
+		String ano = String.valueOf(new Date().getTime());
+		addrInfo.setAno(ano);
+		if (userFeignClient.add(addrInfo) > 0 ){
+			return new ResultVO(ResultEnum.SUCCESS, ano);
+		}
+		return new ResultVO(ResultEnum.ERROR);
 	}
 }
