@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yc.snacknet.mapper.IAdminInfoMapper">
+	<select id="login" parameterType="map" resultType="AdminInfo">
+		select aid, aname, tel from admininfo where (aname=#{account} or tel=#{account}) and pwd=md5(#{pwd}) and status !=0 
+	</select>
+	
+	<select id="finds" resultType="AdminInfo">
+		select aid, aname, tel, status from admininfo
+	</select>
+	
+	<insert id="add" parameterType="AdminInfo">
+		insert into admininfo values(0, #{aname}, md5(#{pwd}), #{tel}, #{status})
+	</insert>
+	
+	<update id="update" parameterType="AdminInfo">
+		update admininfo set aname=#{aname}, tel=#{tel}, status=#{status} where aid=#{aid}
+	</update>
+	
+	<update id="restPwd" parameterType="string">
+		update admininfo set pwd=md5('123321') where aid=#{_parameter}
+	</update>
+	
+	<select id="findByCondition" parameterType="Map" resultType="AdminInfo">
+		select aid, aname, tel, status from admininfo
+		<where>
+			<if test="aname != null and aname != ''">
+				and aname like concat("%", #{aname}, "%")
+			</if>
+			
+			<if test="status != ''">
+				and status = #{status}
+			</if>
+		</where>
+	</select> 
+</mapper>

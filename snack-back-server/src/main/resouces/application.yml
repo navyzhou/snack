@@ -1,0 +1,45 @@
+spring:
+   http:
+      encoding:
+         charset: utf-8
+         force: true
+         enabled: true
+
+   mail:
+      protocol: smtp
+      username: 1293580602@qq.com
+      password: dihpepdwtahlgefh
+      port: 465
+      host: smtp.qq.com
+      properties:
+         mail:
+            smtp:
+               auth: true
+               timeout: 2500
+               ssl:
+                  enable: true
+
+snackUser:
+   driverClassName: com.mysql.cj.jdbc.Driver
+   url: jdbc:mysql://127.0.0.1:3306/snack_user?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useOldAliasMetadataBehavior=true
+   type: com.alibaba.druid.pool.DruidDataSource
+   username: root
+   password: a
+   
+snackProduct:
+   driverClassName: com.mysql.cj.jdbc.Driver
+   url: jdbc:mysql://127.0.0.1:3306/snack_product?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useOldAliasMetadataBehavior=true
+   type: com.alibaba.druid.pool.DruidDataSource
+   username: root
+   password: a
+   
+snackOrder:
+   driverClassName: com.mysql.cj.jdbc.Driver
+   url: jdbc:mysql://127.0.0.1:3306/snack_order?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useOldAliasMetadataBehavior=true
+   type: com.alibaba.druid.pool.DruidDataSource
+   username: root
+   password: a
+   
+mybatis:
+   mapper-locations: classpath:mapper/*Mapper.xml
+   type-aliases-package: com.yc.snacknet.bean

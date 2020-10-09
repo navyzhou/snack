@@ -61,3 +61,23 @@ CREATE TABLE `addrinfo` (
 INSERT INTO addrinfo VALUES ('1590052579423', '1', '周海军', '15096098010', '湖南省', '衡阳市', '珠晖区', '美的梧桐庄园', '0', '1');
 INSERT INTO addrinfo VALUES ('1590053041766', '1', '源辰', '15096098010', '湖南省', '衡阳市', '珠晖区', '衡花路18号湖南工学院', '1', '1');
 INSERT INTO addrinfo VALUES ('1590053187661', '1', '周天', '1509608011', '湖南省', '衡阳市', '珠晖区', '南华大学', '0', '1');
+
+-- ----------------------------
+-- Table structure for `admininfo`
+-- ----------------------------
+DROP TABLE IF EXISTS `admininfo`;
+CREATE TABLE `admininfo` (
+  `aid` int(11) NOT NULL AUTO_INCREMENT,
+  `aname` varchar(100) COLLATE utf8_bin NOT NULL,
+  `pwd` varchar(100) COLLATE utf8_bin NOT NULL,
+  `tel` varchar(15) COLLATE utf8_bin DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`aid`),
+  UNIQUE KEY `aname` (`aname`),
+  UNIQUE KEY `tel` (`tel`)
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of admininfo
+-- ----------------------------
+INSERT INTO admininfo VALUES ('101', 'navy', 'c8837b23ff8aaa8a2dde915473ce0991', '15096098088', '1');
